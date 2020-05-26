@@ -122,7 +122,7 @@ El protocolo **TCP** utiliza números de secuencia en los paquetes. Durante las 
 | 200.11.163.35.110     | 64.76.45.189.1348        | TIME_WAIT       |
 | **200.11.163.35.110** | **200.5.114.77.3888**    | **ESTABLISHED** |
 | 200.11.163.35.25      | 200.11.163.19.1624       | TIME_WAIT       |
-| **200.11.163.35.110** | **200.11.163.135.1454**  | **ESTABLISHED** |
+| 200.11.163.35.110     | 200.11.163.135.1454      | **ESTABLISHED** |
 
 Un error es que hay registros (marcados en negrita) que reflejan duplicidad de conexiones TCP entre la misma combinación de sockets.
 
