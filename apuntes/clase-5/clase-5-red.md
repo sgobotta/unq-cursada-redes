@@ -75,9 +75,8 @@ Para la configuración inicial el host sabe:
 
 Cuando host quiere enviar un paquete:
 
-1. Estrae del paquete la dirección de destino.
+1. Extrae del paquete la dirección de destino.
 2. Extrae la dirección de destino la parte Red (aplica un AND entre la máscara propia y el IP de destino).
-3. 
 
 ... completar
 
@@ -92,8 +91,6 @@ Ejemplos de reglas:
 # Gateway
 0.0.0.0/0 > 147.156.135.1
 ```
-
-
 
 ### Subredes y Máscaras
 
@@ -110,8 +107,6 @@ Existe routing interno y externo.
 
 ### Fragmentación
 
-
-
 ### Protocolos de Routing
 
 > Comunicación con otros routers para conocer los mejores caminos a destino
@@ -124,4 +119,3 @@ Intercambian información necesaria para calcular las rutas más óptimas: **RIP
 
 + El 72% de Inernet utiliza la versión 4 del protocolo IP, el 28% restante usa IPv6.
 + En algún momento toda la red de Internet utilizará la versión 6.
-
