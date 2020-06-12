@@ -580,6 +580,28 @@ Se necesitan:
 **e)** `192.53.40.7`
 **f)** `192.53.56.7`
 
+Teniendo en cuenta el siguiente esquema,
+
+```txt
+#0 red  135.46.56.0/22    | red         135.46.56.0/22    1022 hosts
+                          | broadcast   135.46.59.255
+
+#1 red  135.46.60.0/22    | red         135.46.60.0/22    1022 hosts
+                          | broadcast   135.46.63.255
+
+#2 red  192.53.40.0/23    | red         192.53.40.0/23    510 hosts
+                          | broadcast   192.53.41.255
+```
+
+se identifican los siguientes direccionamientos de ruteo:
+
+**a)** No existe red declarado explícitamente para la dirección `135.46.52.2`, por lo tanto el router direcciona el paquete por Default a **Router 2**.
+**b)** Para la dirección `135.46.52.3` sucede lo mismo que en el punto **a**.
+**c)** Para la dirección `135.46.52.4` sucede lo mismo que en los puntos **a** y **b**.
+**d)** Para la dirección `192.53.25.1` sucede lo mismo que en los puntos **a**, **b** y **c**.
+**e)** Cuando el router recibe la dirección `192.53.40.7`, determina que se encuentra dentro del rango de la red #2, por lo tanto el paquete es direccionado hacia *Router 2**.
+**f)** Para la dirección `192.53.56.7` sucede lo mismo que en los puntos **a**, **b**, **c** y **d**.
+
 ### Problema 17
 
 **Un router presenta la siguiente tabla de ruteo:**
@@ -598,9 +620,32 @@ Se necesitan:
 **d)** `135.46.56.130`
 **e)** `192.53.40.7`
 
+Teniendo en cuenta el siguiente esquema,
+
+```txt
+#0 red  135.46.56.0/25    | red         135.46.56.0/25    126 hosts
+                          | broadcast   135.46.56.127
+
+#1 red  135.46.60.0/22    | red         135.46.60.0/22    1022 hosts
+                          | broadcast   135.46.63.255
+
+#2 red  192.53.40.0/23    | red         192.53.40.0/23    510 hosts
+                          | broadcast   192.53.41.255
+```
+
+se identifican los siguientes direccionamientos de ruteo:
+
+**a)** Cuando el router recibe la dirección `135.46.63.10`, determina que se encuentra dentro del rango de la red #1, por lo tanto el paquete redireccionado por **Interface 1**.
+**b)** El router no puede manejar la dirección `192.53.256.1`, ya que no se encuentra en su tabla de ruteo. El host emisor recibirá un mensaje del estilo: `Destination Host Unreachable`.
+**c)** Para la dirección `200.11.120.5` sucede lo mismo que en el punto **b**.
+**d)** Para la dirección `135.46.56.130` sucede lo mismo que en los puntos **b** y **c**, dado que la red #0 tiene un rango muy corto como para contemplar esa IP: no existe información en la tabla de ruteo para manejar esa dirección.
+**e)** Cuando el router recibe la dirección `192.53.40.7`, determina que se encuentra dentro del rango de la red #2, por lo tanto el apquete es redireccionado por **Interface 1**.
+
 ### Problema 18
 
 **Explicar que hace la implementación de IP de un host que recibe un mensaje ICMP “TTL excedido en tránsito”.**
+
+Un datagrama IP contiene un campo `TTL` (Time To Live), que es inicializado con algún valor numérico en el dispositivo de origen. Cuando es enviado a alguna red, durante cada contacto con un router, éste revisa el valor de ése campo y, en caso de ser mayor a `0`, simplemente lo decrementa y lo envía al siguiente salto (puede ser una red, u otro router). Cuando un router detecta que el campo alcanzó el valor `0`, éste crea un mensaje **ICMP** *(Internet Control Message Protocol)* indicando que el tiempo de tránsito ha expirado, y lo envía al dispositivo de origen.
 
 ### Problema 19
 
@@ -622,3 +667,5 @@ Se necesitan:
 ```
 
 **¿Qué problema observa?**
+
+A partir de la redirección desde la dirección `144.223.246.74`, dos routers empiezan a enviarse el mismo paquete entre sí. La comunicación en loop se observa a partir de la línea 12.
