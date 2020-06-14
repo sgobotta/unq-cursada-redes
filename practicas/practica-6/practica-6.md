@@ -2,17 +2,16 @@
 
 <!-- markdownlint-disable MD001 MD024 -->
 
-> **Santiago Botta**
+> 14 de Junio, 2020.
+> Santiago Botta
 
 ## Práctica VI - Red
 
 ### Problema 1
 
-**1. Si no hay disponible un servidor DHCP, indicar qué parámetros de configuración tiene que introducir el administrador de
-un ordenador para que éste pueda trabajar en una red con la pila de protocolos TCP/IP.**
+**1. Si no hay disponible un servidor DHCP, indicar qué parámetros de configuración tiene que introducir el administrador de un ordenador para que éste pueda trabajar en una red con la pila de protocolos TCP/IP.**
 
-**2. Enumerar las órdenes necesarias para comprobar que la configuración de red del ordenador es la correcta, suponiendo
-que está empleando el sistema operativo Unix. Indicar para qué sirve cada una de esas órdenes.**
+**2. Enumerar las órdenes necesarias para comprobar que la configuración de red del ordenador es la correcta, suponiendo que está empleando el sistema operativo Unix. Indicar para qué sirve cada una de esas órdenes.**
 
 **1.** Para organizar una red local sin utilizar DHCP será necesario asignar manualmente una dirección **IP** a cada host, una másacara y el default gateway correspondiente al router deseado. En caso que exista más de un router será necesario asignarle a cada uno de ellos las rutas estáticas necesarias para realizar saltos entre distintas redes.
 
@@ -24,8 +23,7 @@ que está empleando el sistema operativo Unix. Indicar para qué sirve cada una 
 
 ### Problema 2
 
-**Exprese las siguientes direcciones IP en binario e identifique la clase por defecto a la que pertenece cada una (resalte en cada
-caso qué parte del número binario identifica a la clase):**
+**Exprese las siguientes direcciones IP en binario e identifique la clase por defecto a la que pertenece cada una (resalte en cada caso qué parte del número binario identifica a la clase):**
 
 | Dirección IP      | Binario                                   | Clase |
 | ----------------- | ----------------------------------------- | ----- |
@@ -38,8 +36,7 @@ caso qué parte del número binario identifica a la clase):**
 
 ### Problema 3
 
-**Determine la clase, número de subred y dirección de broadcast para cada par de dirección IP y máscara de red presentadas a
-continuación:**
+**Determine la clase, número de subred y dirección de broadcast para cada par de dirección IP y máscara de red presentadas a continuación:**
 
 | Dirección IP      | Máscara de subred  | Clase | Número de subred   | Dirección de broadcast | Cálculos |
 | ----------------- | ------------------ | ----- | ------------------ | ---------------------- | -------- |
@@ -348,7 +345,36 @@ Máscara /27 para 8 subredes   255.255.255.224   11111111.11111111.11111111.1110
 
 **Diseñe un plan de subredes para la red 165.123.0.0/16 teniendo en cuenta que se necesitan 70 subredes y un máximo de 256 hosts por subred. Especifique la longitud del prefijo e indique los números correspondientes a cada subred.**
 
-??
+Se dispone del siguiente bloque: `165.123.0.0/16`, es decir, 65534 hosts disponibles para repartir en 70 redes de como **máximo** 256 hosts cada una.
+
+A continuación se detallan las redes obtenidas, cada una cuenta con **256 hosts**, donde solo **254 son usables**.
+
+```txt
+red #1    165.123.0.0/24    |  red #25   165.123.24.0/24   |  red #49   165.123.48.0/24
+red #2    165.123.1.0/24    |  red #26   165.123.25.0/24   |  red #50   165.123.49.0/24
+red #3    165.123.2.0/24    |  red #27   165.123.26.0/24   |  red #51   165.123.50.0/24
+red #4    165.123.3.0/24    |  red #28   165.123.27.0/24   |  red #52   165.123.51.0/24
+red #5    165.123.4.0/24    |  red #29   165.123.28.0/24   |  red #53   165.123.52.0/24
+red #6    165.123.5.0/24    |  red #30   165.123.29.0/24   |  red #54   165.123.53.0/24
+red #7    165.123.6.0/24    |  red #31   165.123.30.0/24   |  red #55   165.123.54.0/24
+red #8    165.123.7.0/24    |  red #32   165.123.31.0/24   |  red #56   165.123.55.0/24
+red #9    165.123.8.0/24    |  red #33   165.123.32.0/24   |  red #57   165.123.56.0/24
+red #10   165.123.9.0/24    |  red #34   165.123.33.0/24   |  red #58   165.123.57.0/24
+red #11   165.123.10.0/24   |  red #35   165.123.34.0/24   |  red #59   165.123.58.0/24
+red #12   165.123.11.0/24   |  red #36   165.123.35.0/24   |  red #60   165.123.59.0/24
+red #13   165.123.12.0/24   |  red #37   165.123.36.0/24   |  red #61   165.123.60.0/24
+red #14   165.123.13.0/24   |  red #38   165.123.37.0/24   |  red #62   165.123.61.0/24
+red #15   165.123.14.0/24   |  red #39   165.123.38.0/24   |  red #63   165.123.62.0/24
+red #16   165.123.15.0/24   |  red #40   165.123.39.0/24   |  red #64   165.123.63.0/24
+red #17   165.123.16.0/24   |  red #41   165.123.40.0/24   |  red #65   165.123.64.0/24
+red #18   165.123.17.0/24   |  red #42   165.123.41.0/24   |  red #66   165.123.65.0/24
+red #19   165.123.18.0/24   |  red #43   165.123.42.0/24   |  red #67   165.123.66.0/24
+red #20   165.123.19.0/24   |  red #44   165.123.43.0/24   |  red #68   165.123.67.0/24
+red #21   165.123.20.0/24   |  red #45   165.123.44.0/24   |  red #69   165.123.68.0/24
+red #22   165.123.21.0/24   |  red #46   165.123.45.0/24   |  red #70   165.123.69.0/24
+red #23   165.123.22.0/24   |  red #47   165.123.46.0/24
+red #24   165.123.23.0/24   |  red #48   165.123.47.0/24
+```
 
 ### Problema 10
 
@@ -538,27 +564,47 @@ Redirección hacia 192.168.0.128/28  por 192.168.0.161/30
 
 Se cuenta con el bloque de direcciones `157.92.26.0/24`.
 
-Se necesitan:
+Se necesita:
 
 + 1 red de hasta 64 hosts para la secretaría, la dirección y las oficinas.
-+ 10 redes de hasta 32 hosts para distintas LAN de laboratorios.
++ 5 redes de hasta 32 hosts para distintas LAN de laboratorios con acceso a internet.
++ 5 redes de hasta 32 hosts para distintas LAN de laboratorios sin acceso a internet.
+
+#### Reparto de direcciones
 
 ```txt
-62 hosts usables:   157.92.26.0/26
+62 hosts usables:   157.92.26.0/26        | secretaría, la dirección y las oficinas
 
-30 hosts usables:   157.92.26.64/27
-30 hosts usables:   157.92.26.96/27
-30 hosts usables:   157.92.26.128/27
-30 hosts usables:   157.92.26.160/27
-30 hosts usables:   157.92.26.192/27
-30 hosts usables:   157.92.26.224/27
-30 hosts usables:   157.92.26.64/27
-30 hosts usables:   157.92.26.64/27
-30 hosts usables:   157.92.26.64/27
-30 hosts usables:   157.92.26.64/27
+30 hosts usables:   157.92.26.64/27       |
+30 hosts usables:   157.92.26.96/27       |
+30 hosts usables:   157.92.26.128/27      | Laboratorios con acceso a Internet
+30 hosts usables:   157.92.26.160/27      |
+30 hosts usables:   157.92.26.192/27      |
+
+30 hosts usables:   192.168.0.0/27        |
+30 hosts usables:   192.168.0.32/27       |
+30 hosts usables:   192.168.0.64/27       | Laboratorios sin acceso a Internet
+30 hosts usables:   192.168.0.96/27       |
+30 hosts usables:   192.168.0.128/27      |
 ```
 
-> No alcanzan, hay que hacer alguna otra locura...
+#### Router
+
+```txt
+0/0       157.92.26.1
+
+0/1       157.92.26.65
+1/0       157.92.26.97
+1/1       157.92.26.129
+0/0/0     157.92.26.161
+0/0/1     157.92.26.193
+
+0/1/0     192.168.0.1
+0/1/1     192.168.0.33
+1/0/0     192.168.00.65
+1/0/1     192.168.0.97
+1/1/0     192.168.0.129
+```
 
 ### Problema 16
 
