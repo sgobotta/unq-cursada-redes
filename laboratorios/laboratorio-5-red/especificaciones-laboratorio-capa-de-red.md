@@ -15,7 +15,11 @@
 Se cuenta con un bloque de direcciones `208.101.21.0/24`.
 
 ```txt
-direcciones a repartir    208.101.21.0/24    254 hosts disponibles
+direcciones públicas a repartir                 208.101.21.0/24    254 hosts disponibles
+
+direcciones privadas a repartir para LAN        192.168.0.0/24     254 hosts disponibles
+
+direcciones privadas a repartir para enlaces    172.30.0.0/24      254 hosts disponibles
 ```
 
 ### Buenos Aires
@@ -37,27 +41,27 @@ direcciones a repartir    208.101.21.0/24    254 hosts disponibles
 ```txt
 Eth     0/0     208.101.21.126/25     (enlace a red de computadores y servidores local)
 Eth     0/1     ---
-Eth     1/0     90.0.0.2/30           (enlace a intranet)
-Eth     1/1     90.0.0.5/30           (enlace a router de Enlace La Plata)
+Eth     1/0     172.30.0.2/30         (enlace a intranet)
+Eth     1/1     172.30.0.5/30         (enlace a router de Enlace La Plata)
 ```
 
 Tabla de Ruteo
 
 ```txt
-Hacia red     192.168.0.0/27        por 90.0.0.1
+Hacia red     192.168.0.0/27        por 172.30.0.1
 ```
 
 #### Intranet Router
 
 ```txt
 Eth     0/0     192.168.0.30/27       (enlace a intranet)
-Eth     0/1     90.0.0.1/30           (enlace a router 0)
+Eth     0/1     172.30.0.1/30         (enlace a router 0)
 ```
 
 Tabla de Ruteo
 
 ```txt
-Hacia red     208.101.21.0/25       por 90.0.0.2
+Hacia red     208.101.21.0/25       por 172.30.0.2/30
 ```
 
 ### La Plata
@@ -79,34 +83,34 @@ Hacia red     208.101.21.0/25       por 90.0.0.2
 
 ```txt
 Eth     0/0     208.101.21.129/26   (enlace a equipos de sede La Plata)
-Eth     0/1     90.0.0.17/30        (enlace a router wan La Plata)
-Eth     1/0     90.0.0.1/30         (enlace a router LP Oficinas)
+Eth     0/1     172.30.0.17/30      (enlace a router wan La Plata)
+Eth     1/0     172.30.0.1/30       (enlace a router LP Oficinas)
 ```
 
 Tabla de Ruteo
 
 ```txt
-Hacia red     208.101.21.232/30     por 90.0.0.2
-Hacia red     208.101.21.236/30     por 90.0.0.2
-Hacia red     208.101.21.240/30     por 90.0.0.2
-Hacia red     0.0.0.0               por 90.0.0.18   (hacia Router WAN)
+Hacia red     208.101.21.232/30     por 172.30.0.2
+Hacia red     208.101.21.236/30     por 172.30.0.2
+Hacia red     208.101.21.240/30     por 172.30.0.2
+Hacia red     0.0.0.0               por 172.30.0.18  (hacia Router WAN)
 ```
 
 #### Router Oficinas
 
 ```txt
-Eth     0/0     90.0.0.2/30         (enlace a router 0 LP)
-Eth     0/1     90.0.0.5/30         (enlace a router Oficina 1)
-Eth     1/0     90.0.0.9/30         (enlace a router Oficina 2)
-Eth     1/1     90.0.0.13/30        (enlace a router Oficina 3)
+Eth     0/0     172.30.0.2/30          (enlace a router 0 LP)
+Eth     0/1     172.30.0.5/30          (enlace a router Oficina 1)
+Eth     1/0     172.30.0.9/30          (enlace a router Oficina 2)
+Eth     1/1     172.30.0.13/30         (enlace a router Oficina 3)
 ```
 
 ```txt
-Hacia red     208.101.21.0/25       por 90.0.0.1
-Hacia red     208.101.21.128/26     por 90.0.0.1
-Hacia red     208.101.21.232/30     por 90.0.0.6
-Hacia red     208.101.21.236/30     por 90.0.0.10
-Hacia red     208.101.21.240/30     por 90.0.0.14
+Hacia red     208.101.21.0/25       por 172.30.0.1/30
+Hacia red     208.101.21.128/26     por 172.30.0.1/30
+Hacia red     208.101.21.232/30     por 172.30.0.6/30
+Hacia red     208.101.21.236/30     por 172.30.0.10/30
+Hacia red     208.101.21.240/30     por 172.30.0.14/30
 ```
 
 #### Oficina 1
@@ -119,13 +123,13 @@ LP - Oficina 1 - PC1      IP      208.101.21.234/30
 #### Router Oficina 1
 
 ```txt
-Eth     0/0     90.0.0.6/30         (enlace a Router Oficinas)
-Eth     0/1     208.101.21.233/30   Enlace a dispositivo Oficina 1
+Eth     0/0     172.30.0.6/30       (enlace a Router Oficinas)
+Eth     0/1     208.101.21.233/30   (enlace a dispositivo Oficina 1)
 ```
 
 ```txt
-Hacia red     208.101.21.0/25       por 90.0.0.1
-Hacia red     208.101.21.128/26     por 90.0.0.1
+Hacia red     208.101.21.0/25       por 172.30.0.1
+Hacia red     208.101.21.128/26     por 172.30.0.1
 ```
 
 #### Oficina 2
@@ -138,13 +142,13 @@ LP - Oficina 2 - PC1      208.101.21.238/30
 #### Router Oficina 2
 
 ```txt
-Eth     0/0     90.0.0.10/30        (enlace a Router Oficinas)
-Eth     0/1     208.101.21.237/30   Enlace a dispositivo Oficina 2
+Eth     0/0     172.30.0.10/30      (enlace a Router Oficinas)
+Eth     0/1     208.101.21.237/30   (enlace a dispositivo Oficina 2)
 ```
 
 ```txt
-Hacia red     208.101.21.0/25       por 90.0.0.1
-Hacia red     208.101.21.128/26     por 90.0.0.1
+Hacia red     208.101.21.0/25       por 172.30.0.1
+Hacia red     208.101.21.128/26     por 172.30.0.1
 ```
 
 #### Oficina 3
@@ -157,13 +161,13 @@ LP - Oficina 3 - PC1      208.101.21.242/30
 #### Router Oficina 3
 
 ```txt
-Eth     0/0     90.0.0.14/30        (enlace a Router Oficinas)
-Eth     0/1     208.101.21.241/30   Enlace a dispositivo Oficina 3
+Eth     0/0     172.30.0.14/30      (enlace a Router Oficinas)
+Eth     0/1     208.101.21.241/30   (enlace a dispositivo Oficina 3)
 ```
 
 ```txt
-Hacia red     208.101.21.0/25       por 90.0.0.1
-Hacia red     208.101.21.128/26     por 90.0.0.1
+Hacia red     208.101.21.0/25       por 172.30.0.1
+Hacia red     208.101.21.128/26     por 172.30.0.1
 ```
 
 > Nota sobre oficinas:
@@ -173,8 +177,8 @@ Hacia red     208.101.21.128/26     por 90.0.0.1
 ### Router WAN: Buenos Aires - Proveedor Internet
 
 ```txt
-Eth 0/0       90.0.0.14
-Eth 0/1       90.0.0.XX     (hacia cable modem)
+Eth 0/0       172.30.0.14
+Eth 0/1       172.30.0.XX     (hacia cable modem)
 ```
 
 ### Router WAN: Buenos Aires - La Plata
@@ -184,20 +188,20 @@ Eth 0/1       90.0.0.XX     (hacia cable modem)
 ```txt
 #0 red enlace     208.101.21.228/30   2 hosts usables
 
-Eth     0/0     90.0.0.6/30           (enlace a router 0 BA)
-Eth     0/1     90.0.0.9/30           (enlace a WAN a La Plata)
-Eth     1/0     90.0.0.13             (enlace con proveedor de Internet)
+Eth     0/0     172.30.0.6/30             (enlace a router 0 BA)
+Eth     0/1     172.30.0.9/30             (enlace a WAN a La Plata)
+Eth     1/0     172.30.0.13/30            (enlace con proveedor de Internet)
 ```
 
 Tabla de Ruteo
 
 ```txt
-Hacia red     208.101.21.0/25       por 90.0.0.5
-Hacia red     208.101.21.128/26     por 90.0.0.10
-Hacia red     208.101.21.232/30     por 90.0.0.10
-Hacia red     208.101.21.236/30     por 90.0.0.10
-Hacia red     208.101.21.240/30     por 90.0.0.10
-Hacia red     0.0.0.0/0             por 90.0.0.13
+Hacia red     208.101.21.0/25       por 172.30.0.5
+Hacia red     208.101.21.128/26     por 172.30.0.10
+Hacia red     208.101.21.232/30     por 172.30.0.10
+Hacia red     208.101.21.236/30     por 172.30.0.10
+Hacia red     208.101.21.240/30     por 172.30.0.10
+Hacia red     0.0.0.0/0             por 172.30.0.13
 ```
 
 ### Router WAN: La Plata - Buenos Aires
@@ -207,19 +211,19 @@ Hacia red     0.0.0.0/0             por 90.0.0.13
 ```txt
 #0 red enlace     208.101.21.228/30   2 hosts usables
 
-Eth     0/0     90.0.0.10/30          (enlace a WAN a Buenos Aires)
-Eth     0/1     90.0.0.18/30          (enlace a router 0 LP)
+Eth     0/0     172.30.0.10/30          (enlace a WAN a Buenos Aires)
+Eth     0/1     172.30.0.18/30          (enlace a router 0 LP)
 ```
 
 Tabla de Ruteo
 
 ```txt
-Hacia red     208.101.21.0/25       por 90.0.0.9      (hacia Sede BA)
-Hacia red     208.101.21.128/26     por 90.0.0.17
-Hacia red     208.101.21.232/30     por 90.0.0.17
-Hacia red     208.101.21.236/30     por 90.0.0.17
-Hacia red     208.101.21.240/30     por 90.0.0.17
-Hacia red     0.0.0.0/0             por 90.0.0.9      (hacia Sede BA)
+Hacia red     208.101.21.0/25       por 172.30.0.9         (hacia Sede BA)
+Hacia red     208.101.21.128/26     por 172.30.0.17
+Hacia red     208.101.21.232/30     por 172.30.0.17
+Hacia red     208.101.21.236/30     por 172.30.0.17
+Hacia red     208.101.21.240/30     por 172.30.0.17
+Hacia red     0.0.0.0/0             por 172.30.0.9         (hacia Sede BA)
 ```
 
 > Nota sobre la entrega:
