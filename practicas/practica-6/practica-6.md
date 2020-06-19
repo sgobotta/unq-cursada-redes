@@ -521,7 +521,6 @@ Redirección hacia 192.168.0.96/27   por 192.168.0.161/30
 Redirección hacia 192.168.0.128/28  por 192.168.0.161/30
 ```
 
-
 #### LAN 1
 
 ```txt
