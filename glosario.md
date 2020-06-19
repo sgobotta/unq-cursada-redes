@@ -4,7 +4,7 @@
 
 ### ICMP
 
-ICMP (Internet Control Message Protocol) representaes un protocolo de soporte para IP. Es utilizado por dispositivos de red, incluídos los routers, para enviar mensajes de error e información operacional indicando éxito o fallas durante comuniaciones con una dirección IP.
+ICMP (Internet Control Message Protocol) representaes un protocolo de soporte para IP. Es utilizado por dispositivos de red, incluídos los routers, para enviar mensajes de error e información operacional indicando éxito, fallas u optimización de saltos durante comunicaciones con una dirección IP.
 
 Por ejemplo, se indica un error cuando un servicio solicitada no se encuentra disponible o un host o router no pudo ser alcanzado. Cada dispositivo que recibe un paquete IP decrementa el valor del campo `TTL` (Time To Live) de un datagrama. Otro ejemplo corriente de mensajes `ICMP` se da cuando éste campo alcanza el valor `0`: el paquete es descartado y un mensaje de `tiempo de tránsito ecxedido` es enviado a la dirección de origen.
 
