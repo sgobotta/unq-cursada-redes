@@ -1,6 +1,6 @@
 # Redes
 
-## Clase 7 - Enlace de Datos
+## Clase 7 - Enlace de Datos - VLAN - ARP
 
 ### Introducción
 
@@ -94,11 +94,17 @@ La capa de enlace transmite tramas. De formal general las tramas suelen tener la
 > 1, 10 y 100 Mbps
 
 <center>
-  <img src="img/frames-ethernet.png">
+  <img width="600" src="img/frames-ethernet.png">
 </center>
 
-+ Tipo especifica protocolo nivel 3
-+ largo especifica el largo del campo datos
++ `Tipo` especifica protocolo nivel 3
++ `Largo` especifica el largo del campo datos
+
+#### Encapsulamiento IEEE 802.3
+
+<center>
+  <img width="600" src="img/encapsulamiento-frame-ieee-802-3.png">
+</center>
 
 ### Direcciones MAC
 
@@ -137,3 +143,50 @@ Normalmente la interconexión entre VLANs se hace con un router. Las VLANs está
 <center>
   <img src="img/un-conmutador-dos-vlans.png">
 </center>
+
+## ARP (Address Resolution Protocol)
+
+> Protocolo auxiliar
+
+Es un protocolo multi-protocolo que nos permite relacionar las direcciones IP con los valores de MAC address.
+
++ Transforma direcciones IP en direcciones físicas
++ ARP oculta las direcciones físicas
++ ARP es parte del sistema físico, no del protocolo TCP/IP
++ ARP sería innecesario si todo el hardware de red reconociera direcciones IP
+
+> También es posible designar estáticamente las relaciones IP/MAC addres (evita ARP spoofing)
+
+### Formato del protocolo ARP
+
+<center>
+  <img src="img/formato-protocolo-arp.png" >
+</center>
+
+### Trama ARP
+
+<center>
+  <img src="img/trama-arp.png" >
+</center>
+
++ **Type:** `0x0806` (*Trama ARP*)
++ **Hard type:** `1` (*Ethernet*)
++ **Prot. type:** `0x0800` (*IP*)
++ **Hard size:** `6` (*bytes dir. MAC*)
++ **Prot size:** `4` (*bytes dir. IP*)
++ **OP:** (*tipo de operación*)
+  + `1`: ***ARP*** *request*
+  + `2`: ***ARP*** *reply*
+  + `3`: ***RARP*** *request*
+  + `4`: ***RARP*** *reply*
+
+#### RARP (Transformaciones inversas de direcciones)
+
+Asigna una dirección IP y un esapcio para bajarse un sistema operativo para máquinas sin disco duro o almacenamiento.
+Requiere que todas las máquinas que hagan solicitudes tengan una característico específica de hardware, por el tipo de servicio de software que brinda el servidor RARP.
+
+Se descubre el servidor activo de RARP en la LAN y se ofrece una dirección IP y software.
+
++ Es utilizado por computadoras que no tienen disco duro, para obtener su IP
++ Es necesario disponer de un servidor RARP, que almacene direcciones IP y direcciones físicas
++ RARP utiliza el mismo formato que ARP
